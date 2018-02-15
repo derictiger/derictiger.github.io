@@ -1,4 +1,3 @@
-# derictiger.github.io
-==============
+Just me messing around with Github pages
 
-Hopefully this will be a webpage one day.
+Hopefully making this a personal site for various things, math, etc.
