@@ -1,5 +1,6 @@
 
 <!-- Table stuff -->
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -17,4 +18,11 @@ tr:nth-child(odd) {
 th {
   background-color: black;
   color: white;
+}
+
+<!-- Image Stuff -->
+
+.profilepic {
+  float:left;
+  width:100px;
 }
