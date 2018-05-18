@@ -24,5 +24,6 @@ th {
 
 .profilepic {
   float:left;
-  width:50px;
+  max-width:40%;
+  height:auto;
 }
