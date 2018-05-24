@@ -20,18 +20,9 @@ th {
   color: white;
 }
 
-<!-- Image Stuff -->
-
-.profilepic {
-  float:left;
-  max-width:40%;
-  height:auto;
-}
-
 <!-- Navigation Bar -->
 
 .nav {background:#eee;}
-
 .nav ul {
   list-style-type: none;
   margin: 0;
@@ -39,11 +30,9 @@ th {
   overflow: hidden;
   background-color:#333333;
 }
-
 .nav li {
   float: left;
 }
-
 .nav li a {
   display: block;
   color: white;
@@ -51,7 +40,17 @@ th {
   padding: 16px;
   text-decoration: none;
 }
-
 .nav li a:hover {
   background-color:#111111
+}
+
+<!-- Footer -->
+
+footer {
+  display: block;
+  text-align: center;
+  bottom:0;
+  width: 100%;
+  height: 30px;
+  position: fixed;
 }
