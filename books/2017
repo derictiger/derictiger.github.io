@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="myStyle.css">
+    <title>Books 2017</title>
+  </head>
+
+  <body>
+    <p>Books read in 2017.</p><br>
+    
+    <table style="width:75%">
+    
+      <tr>
+        <th>Title</th>
+        <th>Author</th> 
+        <th>Season Read</th>
+      </tr>
+      
+      <tr>
+        <td>Name of The Wind</td>
+        <td>Patrick Rothfuss</td> 
+        <td>Winter</td>
+      </tr> <!-- Willis and Robert Recommended, Gift From Blythe -->
+      
+      
+      <tr>
+        <td>A Wise Man's Fear</td>
+        <td>Patrick Rothfuss</td> 
+        <td>Winter</td>
+      </tr> <!-- Willis and Robert Recommended, Gift From Blythe -->
+      
+      
+      
+      <tr>
+        <td>Gone Girl (audiobook)</td>
+        <td>Gillian Flynn</td> 
+        <td>Spring</td>
+      </tr> <!-- Listened with Blythe on drive to and from Key West, Library -->
+      
+      
+      <tr>
+        <td>Taipei</td>
+        <td>Tao Lin</td> 
+        <td>Spring</td>
+      </tr> <!-- Alex's choice for Bookclub, Library -->
+      
+      
+      <tr>
+        <td>What I Talk About When I Talk About Running</td>
+        <td>Haruki Murakami</td> 
+        <td>Spring</td>
+      </tr> <!-- Bought from Runologie, initially as gift for Alex -->
+      
+      
+      <tr>
+        <td>Sotries of Your Life and Others</td>
+        <td>Ted Chiang</td> 
+        <td>Summer</td>
+      </tr> <!-- Has short story movie Arrival is based on, also math short story heard on a podcast, Library -->
+      
+      <tr>
+        <td>Fountainhead</td>
+        <td>Ayn Rand</td> 
+        <td>Summer</td>
+      </tr> <!-- James, Rhodie, and Daniel Recommended, Library -->
+      
+      
+      <tr>
+        <td>Arcadia</td>
+        <td>Tom Stoppard</td> 
+        <td>Summer</td>
+      </tr> <!-- Katie Ahrens Recommended, Library -->
+      
+      
+      <tr>
+        <td>H is for Hawk</td>
+        <td>Helen Macdonald</td> 
+        <td>Fall</td>
+      </tr> <!-- Blythe Recommended, Library -->
+      
+      
+      <tr>
+        <td>Bone</td>
+        <td>Jeff Smith</td> 
+        <td>Fall</td>
+      </tr> <!-- Eli Recommended, Loan from Eli -->
+      
+      
+      <tr>
+        <td>Left Hand of Darkness</td>
+        <td>Ursula K. Le Guin</td> 
+        <td>Winter</td>
+      </tr> <!-- Robert's choice for Bookclub, Library -->
+    </table>
+  </body>
+</html>
