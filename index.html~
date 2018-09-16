@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="myStyle.css">
+    <title>Eric Geiger Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/cv">CV</a></li>
+        <li><a href="/interests">Interests</a></li>
+      </ul>
+    </nav>
+    <img src="images/headshot.jpg" alt="picture of me" style="float:left;max-width:30%;height:auto; margin: 0px 10px 5px 0px">
+    <h3>Eric Geiger</h3>
+    <p>I am a Mathematics Graduate Student at <a href="https://math.sciences.ncsu.edu">NC State University</a></p>
+    <br>
+    My office is SAS Hall, Room 4117 (4th Floor, North Wing)
+    <address> 2108 SAS Hall<br>
+      Box 8205<br>
+      Raleigh, NC 27695
+    </address>
+    <footer><hr><br><p>Contact - ericdgeiger@gmail.com - edgeiger@ncsu.edu</p></footer>
+  </body>
+</html>

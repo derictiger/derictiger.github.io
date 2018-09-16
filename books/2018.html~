@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/myStyle.css">
+    <title>Books 2018</title>
+  </head>
+
+  <body>
+    
+    <nav class="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/cv">CV</a></li>
+        <li><a href="/interests">Interests</a></li>
+      </ul>
+    </nav>
+    
+    <p>Books read in 2018.</p><br>
+    
+    <table style="width:75%">
+    
+      <tr>
+        <th>Title</th>
+        <th>Author</th> 
+        <th>Date Finished</th>
+      </tr>
+      
+      <tr>
+        <td>A Darker Shade of Magic</td>
+        <td>V.E. Schwab</td> 
+        <td>January 17</td>
+      </tr> <!-- Alex's Choice for Bookclub through Robert, Library -->
+      
+      
+      <tr>
+        <td>The Princess Bride</td>
+        <td>William Goldman</td> 
+        <td>March 16</td>
+      </tr> <!-- My Choice for Bookclub, Library -->
+      
+      <tr>
+        <td>A Wizard of Earthsea</td>
+        <td>Ursula K. Le Guin</td> 
+        <td>March 23</td>
+      </tr> <!-- Gift from Blythe -->
+      
+      <tr>
+        <td>The Forgotten Beasts of Eld</td>
+        <td>Patricia A. McKillip</td> 
+        <td>April 9</td>
+      </tr> <!-- Gift from Blythe -->
+      
+      <tr>
+        <td>S.</td>
+        <td>J.J. Abrams and Doug Dorst</td> 
+        <td>May 16</td>
+      </tr> <!-- Gift from Ashley -->
+      
+      <tr>
+        <td>House of Leaves</td>
+        <td>Mark Z. Danielewski</td> 
+        <td>May 25</td>
+      </tr> <!-- Robert's Choice for Bookclub, Library -->
+      
+      <tr>
+        <td>The Prophet</td>
+        <td>Kahlil Gibran</td> 
+        <td>May 29</td>
+      </tr> <!-- Gift from Debbie -->
+      
+      <tr>
+        <td>The Red Tent</td>
+        <td>Anita Diamant</td> 
+        <td>June 4</td> 
+      </tr> <!-- Aunt Lisa Recommended, Library -->
+      
+
+      <tr>
+        <td>The Handmaid's Tale</td>
+        <td>Margaret Atwood</td> 
+        <td>June 7</td>
+      </tr> <!-- Blythe Recommended, Library -->
+      
+      
+      <tr>
+        <td>When Breath Becomes Air</td>
+        <td>Paul Kalanithi</td> 
+        <td>June 25</td>
+      </tr> <!-- Mary W Recommended, Library -->
+      
+      
+      <tr>
+        <td>Dirk Gently's Holistic Detective Agency</td>
+        <td>Douglas Adams</td> 
+        <td>July 9</td>
+      </tr> <!-- My Choice, Tiny Library -->
+      
+      
+      <tr>
+        <td>The Three Body Problem</td>
+        <td>Liu Cixin</td> 
+        <td>July 16</td>
+      </tr> <!-- Gift from Blythe -->
+      
+      <tr>
+        <td>The Long Dark Tea-Time of the Soul</td>
+        <td>Douglas Adams</td> 
+        <td>July 21</td>
+      </tr> <!-- My Choice, Library -->
+
+      
+    </table>
+  </body>
+</html>

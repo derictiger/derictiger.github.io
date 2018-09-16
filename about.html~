@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="myStyle.css">
+    <title>Some Dogs are good</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/cv">CV</a></li>
+        <li><a href="/interests">Interests</a></li>
+      </ul>
+    </nav>
+     <img src="images/headshot.jpg" alt="picture of me hiking in Big Bend National Park" style="float:right ;max-width:30%;height:auto; margin: 0px 0px 5px 10px">
+    <p>I am a North Carolina native, and grew up in Apex, NC where I attended Apex High School and ran Cross-Country, graduating in 2010</p>
+    <p>I attended undergrad at UNC-Chapel Hill where I majored in Math and minored in Religious Studies.  During my time as a student I was an instructor at the local Mathenasium center, and was able to snag a summer internship at NASA - Goddard Space Flight Center.  I graduated in 2014</p>
+    <p>Immediately afterwards I spent three months riding a bicycle across the country with the organization Bike & Build.  Our route started in Charleston, SC and ended in Santa Cruz, CA. Aside from walking, bicycling is perhaps one of the most intimate way to explore a large cross section of the United States and I highly recommend it.</p>
+    <p>After making it to the west coast I lived in Reno, NV serving as a member of the Nevada Conservation Corps, an Americorps position where you help build and maintain trails and other outdoor facilities.</p>
+    <p>Shortly after finishing up in Nevada I moved to Austin, TX where I worked for the Private Equity Firm, Vista Equity Partners, as a Database Analyst for the newly established Buisness Equity Team.  During this time I also got involved in the local bicycle community and volunteered regularly as a shop-coordinator at the Austin Yellow Bike Project.</p>
+    <p>Currently I am a Graduate Student in the Mathematics Department at NC State University.  When I am able to I also try to volunteer with the Raleigh Community Kickstand, Raleigh's community bicycle cooperative.</p>
+    <p>I also have a cat, her name is Marceline.<img src="images/marcy.jpg" alt="my cat" style="float:right ;max-width:30%;height:auto; margin: 5px 0px 5px 10px"></p>
+    
+    
+  </body>
+</html>
