@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/myStyle.css">
+    <title>Pace Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/cv">CV</a></li>
+        <li><a href="/interests">Interests</a></li>
+      </ul>
+    </nav>
+  
+    <h2>Pace Calculator</h2>
+    <form id="Distance_Time">
+	    Distance (<select name="units">
+		    <option> mile </option>
+		    <option> km </option>
+		    </select>) 
+	    <input type="text" name="dist" maxlength="5" size="5" ><br>
+	    Hours Min:Sec  
+	    <input type="text" name="hr" maxlength="1" size="1"> 
+	    <input type="text" name="min" maxlength="2" size="2">:
+	    <input type="text" name="sec" maxlength="2" size="2"><br>
+	    <input type="button" onclick="Pace()" value="Calculate Pace">
+    </form>
+
+    <p id="pace"></p>
+
+	<script>
+	function Pace(){
+	  var data = document.getElementById("Distance_Time");
+	  var d = data.elements[1].value;
+	  var h = data.elements[2].value;
+	  var m = data.elements[3].value;
+	  var s = data.elements[4].value;
+	  var u = data.elements[0].value;
+	  var p,p1,p2,pace;
+	  p = (h * 60 + m*1 + s/60 )/d;
+	  p1 = Math.floor(p);
+	  p2 = Math.round((p - p1)*60);
+	  if (p2 < 10) {
+	    pace = p1 + ":0" + p2 + " min/" + u;}
+	  else {
+	    pace = p1 + ":" + p2 + " min/" + u;}
+          document.getElementById("pace").innerHTML = pace;
+	}
+	</script>
+	    
+
+  </body>
+</html>
