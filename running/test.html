@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/myStyle.css">
+    <title>Calendar Maker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+
+  <p id="test"></p>
+
+  <script>
+function makeList(year,month){
+	var monthKey = {
+		1 : "Jan",
+		2 : "Feb",
+		3 : "Mar",
+		4 : "Apr",
+		5 : "May",
+		6 : "Jun",
+		7 : "Jul",
+		8 : "Aug",
+		9 : "Sep",
+		10 : "Oct",
+		11 : "Nov",
+		12 : "Dec",
+		0 : "Dec"
+	};
+	var monthDays = {
+		1 : new Date(year,1,0).getDate(),
+		2 :new Date(year,1,0).getDate(), 
+		3 :new Date(year,1,0).getDate(),
+		4 :new Date(year,1,0).getDate(),
+		5 :new Date(year,1,0).getDate(),
+		6 :new Date(year,1,0).getDate(),
+		7 :new Date(year,1,0).getDate(),
+		8 :new Date(year,1,0).getDate(),
+		9 :new Date(year,1,0).getDate(),
+		10 :new Date(year,1,0).getDate(),
+		11 :new Date(year,1,0).getDate(),
+		12 :new Date(year,1,0).getDate(),
+		0 :new Date(year,1,0)
+	};
+
+	let firstDay = new Date(year,month-1,1);
+	var overLap = firstDay.getDay();
+	var weeks = Math.ceil((overLap+new Date(year,month,0).getDate())/7);
+	var days = weeks*7;
+
+	let listElement = document.createElement('ul'),
+	numberOfListItems = days,
+	listItem,
+	i;
+
+	document.getElementsByTagName('body')[0].appendChild(listElement);
+
+	var counter = 0;
+	for (i = 1; i < overLap+1; ++i){
+		listItem = document.createElement('li');
+		listItem.innerHTML = new Date(year,month-1,0).getDate()-overLap+i;
+		listElement.appendChild(listItem);
+		++counter;
+	}
+	for (i = 1; i < new Date(year,month,0).getDate()+1; ++i){
+		listItem = document.createElement('li');
+		listItem.innerHTML = i;
+		listElement.appendChild(listItem);
+		++counter;
+	}
+	backLap = days-counter;
+	for (i = 1; i < backLap+1; ++i){
+		listItem = document.createElement('li');
+		listItem.innerHTML = i;
+		listElement.appendChild(listItem);
+		++counter;
+	}
+
+}
+makeList(2019,3);
+  </script>
+
+  </body>
+</html>
