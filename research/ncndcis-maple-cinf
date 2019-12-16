@@ -1,0 +1,292 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>SignatureCurveWorksheet3.html</title>
+<!-- Created by Maple 2017.1, Mac OS X -->
+</head>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark4" />
+<p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>C infinity Curves</strong></font>&nbsp;</p>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark5" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Set Up</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The following procedure generates a curvature and curve of length 48 using a list of letters representing the minimal period of a word on the graph examined in section 5. These curves are generated so that the sections with the same image under the signature map have the same color. &nbsp;</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>SmoothCurve := proc(L)
+<br>description "input list L to return curvature and plot of smooth curve with that curvature";
+<br>local g, h, f, k_b, k, C, ell, i, C1, col;
+<br>col := table([1="red",-1="purple",3="green",-2="blue"]):
+<br>h := (r_1,r_2) -&gt; exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2))):
+<br>g := (r_1,r_2) -&gt; -exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2)))+1:
+<br>f := (r_1,r_2) -&gt; piecewise(t&lt;=r_1,0,
+<br> &nbsp;t&lt;(r_1+r_2)/2, g(r_1,(r_1+r_2)/2), t=(r_1+r_2)/2, 1,
+<br> &nbsp;t&lt;r_2, h((r_1+r_2)/2,r_2),0):
+<br>ell:=nops(L);
+<br>k_b:=0;
+<br>for i from 1 to ell do
+<br> &nbsp;k_b:=k_b+L[i]*Pi/3*f(2*(i-1),2*i);
+<br>end do;
+<br>k := eval(k_b,t=s-ell*2*floor(s/(ell*2)));
+<br>C1 := CurveApprox(k,312,0,48);
+<br>C := [seq(plot(C1(1+13*i..1+13*(i+1),1),C1(1+13*i..1+13*(i+1),2),
+<br> &nbsp;color=col[L[(i mod ell)+1]],labels=[x,y]),i=0..23)];
+<br>return C, k;
+<br>end proc:a:=-2:b:=-1:c:=1:d:=3:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark6" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Section 4 curves </strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">We obtain 2 non-congruent curves using the minimal peroid of their words. &nbsp;Since an admissible word will have 48 letters we can see that C1 and C2 will give a curve with symmetry index 6, while C3 will have symmetry index 3, and C4 will have symmetry index 2.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C1, k1 := SmoothCurve([c,a,d,b]):plots[display](C1);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_16.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C2, k2 := SmoothCurve([c,d,a,b]):plots[display](C2);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_17.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C3, k3 := SmoothCurve([c,a,d,b,c,d,a,b]):plots[display](C3);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_18.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C4, k4 := SmoothCurve([c,a,d,b,c,d,a,b,c,a,d,b]):plots[display](C4);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_19.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark7" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Curvatures κ<img src="images/SignatureCurveWorksheet_20.gif" width="21" height="31" alt="" align="center" border="0"> and κ<img src="images/SignatureCurveWorksheet_21.gif" width="202" height="31" alt="" align="center" border="0"></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Here we show the curvature functions for C1 and C2 as described in section 4.</font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_22.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_23.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The signature for the curves above here is obtained from κ<img src="images/SignatureCurveWorksheet_24.gif" width="20" height="23" alt="" align="center" border="0"></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>Asig := plot([[k1,diff(k1,s),s=0..2],[k1,diff(k1,s),s=2..4],[k1,diff(k1,s),s=4..6],[k1,diff(k1,s),s=6..8]],
+<br>color=["red","blue","green","purple"]): 
+<br>Alabel1 := plots[textplot]([1.4,-.4,kappa(s)]):
+<br>Alabel2 := plots[textplot]([-.5,5,diff(kappa(s),s)]):
+<br>plots[display]({Asig,Alabel1,Alabel2});</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_25.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark8" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Section 5 Curves</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Since admissible words on the signature graph have length 24 we can see that the word below is admissible while not periodic.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C5,k5 := SmoothCurve([c,a,d,b,c,d,a,b,c,d,a,b,c,a,d,b,c,a,d,b,c,d,a,b]):plots[display](C5);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_26.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Though while a periodic admissible word will induce a closed curve, the curve is not guarunteed simple.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C6,k6 := SmoothCurve([c,a,b,d,c,d,a,b,c,a,b,d]):
+<br>plots[display](C6);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_27.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">There are many admissible words that induce non-congruent closed curves, the following are just a few examples.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C7,k7 := SmoothCurve([c,a,b,d]):
+<br>plots[display](C7);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_28.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C8,k8 := SmoothCurve([c,b,d,a,d,b,a,c]):
+<br>plots[display](C8);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_29.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C9,k9 := SmoothCurve([c,b,d,a,c,b,a,d,c,a,b,d]):
+<br>plots[display](C9);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_30.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C10,k10 := SmoothCurve([c,b,d,a,a,d,b,c]):
+<br>plots[display](C10);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_31.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C11,k11 := SmoothCurve([c,b,d,a,c,d,b,a,c,b,d,a]):
+<br>plots[display](C11);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_32.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C12,k12 := SmoothCurve([c,b,d,d,a,b,a,c]):
+<br>plots[display](C12);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_33.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The following closed curves are induced from non-admissible words. &nbsp;As a result, the signature index for these curves are different from the rest of the curves in this section. &nbsp;Respectively, the signature index for the curves are 4, 3, 2, and 3.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C13,k13 := SmoothCurve([c,b,d,a,c,a,c,c,c,b,d,a]):
+<br>plots[display](C13);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_34.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C14,k14 := SmoothCurve([c,b,d,a,c,a,c,c]):
+<br>plots[display](C14);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_35.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C15,k15 := SmoothCurve([c,a,c,c,c,b,d,a,c,a,c,c]):
+<br>plots[display](C15);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_36.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C16,k16 := SmoothCurve([c,c,a,b,d,a,c,c]):
+<br>plots[display](C16);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_37.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+</dl>
+
+</html>
