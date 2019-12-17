@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,6 +31,9 @@
 
     <p id="pace"></p>
 
+    <p> <a href="https://onthegomap.com/#/create">
+	    Good site for simple route mapping </a> </p>
+
 	<script>
 	function Pace(){
 	  var data = document.getElementById("Distance_Time");
@@ -45,9 +47,11 @@
 	  p1 = Math.floor(p);
 	  p2 = Math.round((p - p1)*60);
 	  if (p2 < 10) {
-	    pace = p1 + ":0" + p2 + " min/" + u;}
+	    pace = p1 + ":0" + p2 + " min/" + u;
+	  }
 	  else {
-	    pace = p1 + ":" + p2 + " min/" + u;}
+	    pace = p1 + ":" + p2 + " min/" + u;
+	  }
           document.getElementById("pace").innerHTML = pace;
 	}
 	</script>
