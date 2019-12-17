@@ -4,15 +4,15 @@
     <link rel="stylesheet" type="text/css" href="myStyle.css">
     <title>Eric Geiger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.js"></script>
+    <script>
+	$(function(){
+		$("#navbar").load("/nav.html");
+	});
+    </script>
   </head>
   <body>
-    <nav class="nav">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/research">Research</a></li>
-        <li><a href="/cv">CV</a></li>
-      </ul>
+    <nav id="navbar" class="nav">
     </nav>
     <img src="images/headshot.jpg" alt="picture of me" style="float:left;max-width:30%;height:auto; margin: 0px 10px 5px 0px">
     <h3>Eric Geiger</h3>
