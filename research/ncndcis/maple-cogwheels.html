@@ -1,0 +1,285 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>SignatureCurveWorksheet2.html</title>
+<!-- Created by Maple 2017.1, Mac OS X -->
+</head>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark3" />
+<p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>Non-degenerate cogwheels</strong></font>&nbsp;</p>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark4" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Set up</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A proceedure that takes a parameterization and returns the curvature and derivative with respect to arclength.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>curvature := proc(x,y,t)
+<br>description "input x and y parameterized by t to return curvature parameterized by t";
+<br>local k, kp;
+<br>k := (diff(x,t)*diff(y,t,t)-diff(y,t)*diff(x,t,t))/((diff(x,t)^2+diff(y,t)^2)^(3/2));
+<br>kp := diff(k,t)/((diff(x,t)^2+diff(y,t)^2)^(1/2));
+<br>return k, kp;
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A proceedure that takes </font><font color="#000000" size="3" face="Times New Roman"><em>n, </em></font><font color="#000000" size="3" face="Times New Roman">the number of sections on the cogwheel, </font><font color="#000000" size="3" face="Times New Roman"><em>a,</em></font><font color="#000000" size="3" face="Times New Roman"> a list of length </font><font color="#000000" size="3" face="Times New Roman"><em>n</em></font><font color="#000000" size="3" face="Times New Roman"> that tells how many teeth each section has, and </font><font color="#000000" size="3" face="Times New Roman"><em>r_0, </em></font><font color="#000000" size="3" face="Times New Roman">the inner radius of the cogwheel. &nbsp;The output is the parameterization of such a cogwheel.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cogwheel := proc(n,a,r_0)
+<br>description "input number of sections, n,
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number of teeth, a,
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and inner radius, r_0,
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output the parameterization of a non-degenerate cogwheel";
+<br>local r_j, j, rho_x, rho_y;
+<br>r_j := 0;
+<br>for j from 1 to n do
+<br>r_j := r_j + piecewise(t &lt; 2*(j-1)*Pi/n, 0, t &lt;= 2*j*Pi/n, a[j]^(-2)*(1-cos(n*a[j]*t)), t &lt;= 2*Pi, 0):
+<br>end do;
+<br>rho_x := (r_0 + r_j)*cos(t);
+<br>rho_y := (r_0 + r_j)*sin(t);
+<br>return rho_x, rho_y;
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark5" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Example of Non-Degenerate Cogwheel</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A non-degenerate cogwheel with 3 sections having 2, 3, and 4 teeth respectively with an inner radius of 1.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog_ex := cogwheel(3,[2,3,4],1):plot([[cog_ex[1],cog_ex[2],t=0..2*Pi/3],[cog_ex[1],cog_ex[2],t=2*Pi/3..4*Pi/3],[cog_ex[1],cog_ex[2],t=4*Pi/3..2*Pi]],color=["red","blue","green"]);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_1.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark6" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Non-Degenerate Cogwheels with identical Signature</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Two non-degenerate cogwheels with identical siganture. &nbsp;Created by permuting sections of teeth.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1 := cogwheel(4,[3,4,5,6],1):cog2 := cogwheel(4,[3,5,6,4],1):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1_plot := plot([[cog1[1],cog1[2],t=0..Pi/2],[cog1[1],cog1[2],t=Pi/2..Pi],[cog1[1],cog1[2],t=Pi..3*Pi/2],[cog1[1],cog1[2],t=3*Pi/2..2*Pi]],color=["red","blue","green","purple"],labels=[x,y]):cog2_plot := plot([[cog2[1],cog2[2],t=0..Pi/2],[cog2[1],cog2[2],t=Pi/2..Pi],[cog2[1],cog2[2],t=Pi..3*Pi/2],[cog2[1],cog2[2],t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],labels=[x,y]):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([cog1_plot,cog2_plot]));</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_2.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_3.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The curvatures for the above two cogwheels.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k1, kp1 := curvature(cog1[1],cog1[2],t):k2, kp2 := curvature(cog2[1],cog2[2],t):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k1_plot := plot([[t,k1,t=0..Pi/2],[t,k1,t=Pi/2..Pi],
+<br>[t,k1,t=Pi..3*Pi/2],[t,k1,t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],numpoints=1000,labels=["t",kappa]):k2_plot := plot([[t,k2,t=0..Pi/2],[t,k2,t=Pi/2..Pi],
+<br>[t,k2,t=Pi..3*Pi/2],[t,k2,t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],numpoints=1000,labels=["t",kappa]):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig := plot([[k1,kp1,t=0..Pi/2],[k1,kp1,t=Pi/2..Pi],
+<br>[k1,kp1,t=Pi..3*Pi/2],[k1,kp1,t=3*Pi/2..2*Pi-.001]],color=["red","blue","green","purple"]):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([k1_plot,k2_plot]));</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_4.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_5.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The signature for the above two cogwheels and the following cogwheels.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_xlabel := plots[textplot]([7.5,-25,'typeset'(kappa)]):sig_ylabel := plots[textplot]([3,250,'typeset'(diff(kappa(s),s))]):plots[display]({sig,sig_xlabel,sig_ylabel});</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_6.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The below proceedures generate cogwheels that swap the ordering of teeth on the cogwheels above and plots them using the same color matching.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog_swap := proc(L,n)
+<br>description "give a list, and number of sections, and order cogs that way";
+<br>local theta, r_j, rho_x, rho_y, i;
+<br>theta := 0; r_j := 0;
+<br>for i from 1 to nops(L) do
+<br> &nbsp;r_j := r_j + piecewise( t &lt;= theta, 0, t &lt;= theta + 2*Pi/(n*L[i]), L[i]^(-2)*(1-cos(4*L[i]*(t-theta))), t &lt;= 2*Pi, 0);
+<br> &nbsp;theta := theta + 2*Pi/(n*L[i]);
+<br>end do;
+<br>rho_x := (1 + r_j)*cos(t);
+<br>rho_y := (1 + r_j)*sin(t);
+<br>return rho_x, rho_y;
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog_swap_plot := proc(L,rho_x,rho_y,n)
+<br>description "give cog list and x-y coords along with number of sections and get color plot. &nbsp;Add more colors to cog_color if using more than 4 sections";
+<br>local cog_color, cog_plot, theta,i;
+<br>cog_color := ["red","blue","green","purple"];
+<br>theta := 0;
+<br>cog_plot := [];
+<br>for i from 1 to nops(L) do
+<br> &nbsp;cog_plot := [op(cog_plot),plot([rho_x,rho_y,t=theta..theta+2*Pi/(n*L[i])],color=cog_color[L[i]-2])];
+<br> &nbsp;theta := theta + 2*Pi/(n*L[i]);
+<br>end do;
+<br>return cog_plot;
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Here we generate two more non-degenerate cogwheels with the signature above, but with the teeth permuted rather than the whole sections.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_teeth := [3,4,4,4,4,3,5,5,5,5,5,3,6,6,6,6,6,6]:cog4_teeth := [4,5,6,4,6,4,3,5,3,5,6,3,6,5,6,4,5,6]:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3 := cog_swap(cog3_teeth,4):cog4 := cog_swap(cog4_teeth,4):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_plot := cog_swap_plot(cog3_teeth,cog3[1],cog3[2],4):cog4_plot := cog_swap_plot(cog4_teeth,cog4[1],cog4[2],4):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog3_plot),plots[display](cog4_plot)]));</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_7.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_8.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark7" />
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Cogwheels generated from non-admissible words</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Below are cogwheels generated from non-admissible words. &nbsp;The left coghweel losses two teeth from its 6-section to gain one in its 3-section while the right cogwheel looses two teeth in its 4-section to gain three in its 6-section. &nbsp;While they will have the same signature as above, the signature index will be different, though the right cogwheel has the same signature index as those above.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog5_teeth := [3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6]:
+<br>cog6_teeth := [3,3,3,4,4,5,5,5,5,5,6,6,6,6,6,6,6,6,6]:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog5 := cog_swap(cog5_teeth,4):
+<br>cog6 := cog_swap(cog6_teeth,4):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog5_plot := cog_swap_plot(cog5_teeth,cog5[1],cog5[2],4):
+<br>cog6_plot := cog_swap_plot(cog6_teeth,cog6[1],cog6[2],4):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog5_plot),plots[display](cog6_plot)]));</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_9.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_10.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+</dl>
+
+</html>
