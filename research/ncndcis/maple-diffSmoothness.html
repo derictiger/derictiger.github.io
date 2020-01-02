@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>SignatureCurveWorksheet5.html</title>
+<title>SignatureCurveWorksheet2.html</title>
 <!-- Created by Maple 2017.1, Mac OS X -->
 </head>
 <dl style="margin-left:40px"><a name="MapleAutoBookmark14" />
@@ -143,7 +143,9 @@
 <br>sig6 := plot([k,kp,s=s6..s7],color="Cyan",thickness=3):
 <br>sig7 := plot([k,kp,s=s7..s8],color="Blue",thickness=3):
 <br>sig8 := plot([k,kp,s=s8..2*Pi+s1],color="Purple",thickness=3):
-<br>plots[display](sig1,sig2,sig3,sig4,sig5,sig6,sig7,sig8);</td>
+<br>
+<br>
+<br>plots[display](sig1,sig2,sig3,sig4,sig5,sig6,sig7,sig8);</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -157,11 +159,15 @@
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>eCol := table([a="Green",b="Purple",c="Cyan",d="Yellow",e="Blue",f="Orange",g="Lime",h="Red"]):
-<br>eInt := table([a=[s5,s6],b=[s8,s1+2*Pi],c=[s6,s7],d=[s3,s4],e=[s7,s8],f=[s2,s3],g=[s4,s5],h=[s1,s2]]):
-<br>ePts := table([a=round((s6-s5)*pts/(10*Pi)),b=round((s1+2*Pi-s8)*pts/(10*Pi)),c=round((s7-s6)*pts/(10*Pi)),d=round((s4-s3)*pts/(10*Pi)),e=round((s8-s7)*pts/(10*Pi)),f=round((s3-s2)*pts/(10*Pi)),g=round((s5-s4)*pts/(10*Pi)),h=round((s2-s1)*pts/(10*Pi))]):</td>
+<br>
+<br>eInt := table([a=[s5,s6],b=[s8,s1+2*Pi],c=[s6,s7],d=[s3,s4],e=[s7,s8],f=[s2,s3],g=[s4,s5],h=[s1,s2]]):
+<br>
+<br>
+<br>ePts := table([a=round((s6-s5)*pts/(10*Pi)),b=round((s1+2*Pi-s8)*pts/(10*Pi)),c=round((s7-s6)*pts/(10*Pi)),d=round((s4-s3)*pts/(10*Pi)),e=round((s8-s7)*pts/(10*Pi)),f=round((s3-s2)*pts/(10*Pi)),g=round((s5-s4)*pts/(10*Pi)),h=round((s2-s1)*pts/(10*Pi))]):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">The procedure below takes a list that gives the desired path on the signature graph, the number of times that path is repeated, and a curvature function that gives the Euclidean signature used to obtain the signature graph.The output will be the new curvature function, an array that approximates the new curve, and colored plots of both.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The procedure below takes a list that gives the desired path on the signature graph, the number of times that path is repeated, and a curvature function that gives the Euclidean signature used to obtain the signature graph.
+<br>The output will be the new curvature function, an array that approximates the new curve, and colored plots of both.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
@@ -171,7 +177,11 @@
 <br>and a curvature function for a curve with the signature,
 <br>outputs the curvature, and a plot of both the curve and curvature";
 <br>local pts, C, C_pts, kw_period, kw, kw_plot, Cw, Cw_plot, i;
-<br>pts := 0;for i from 1 to nops(L) do: &nbsp;pts := pts + ePts[L[i]]*m;end do:C := [s&lt;=0,0];
+<br>pts := 0;
+<br>for i from 1 to nops(L) do:
+<br> &nbsp;pts := pts + ePts[L[i]]*m;
+<br>end do:
+<br>C := [s&lt;=0,0];
 <br>for i from 1 to nops(L) do:
 <br> &nbsp;C := [op(C),s&lt;=(eInt[L[i]][2]-eInt[L[i]][1]+rhs(C[2*i-1])),eval(k,s=s+eInt[L[i]][1]-rhs(C[2*i-1]))];
 <br>end do:
@@ -190,12 +200,13 @@
 </table></strong></font>&nbsp;</p>
 </dl>
 <dl style="margin-left:40px"><a name="MapleAutoBookmark19" />
-<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Original Curves</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>New Curves</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Through an analysis of the signature graph, we see there are only five admissible paths given below.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C1 := New_Curve([b,h,f,d,g,a,c,e],5,k):plots[display](Array([plots[display](C1[3]),plots[display](C1[4])]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C1 := New_Curve([b,h,f,d,g,a,c,e],5,k):
+<br>plots[display](Array([plots[display](C1[3]),plots[display](C1[4])]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -314,7 +325,8 @@
 </dl>
 <dl style="margin-left:40px"><a name="MapleAutoBookmark20" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>An animation</strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">Below an animation is created showing how the signature curve is traversed by the first and second curve in the collection above.The curves being traced are simply copied over from above.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Below an animation is created showing how the signature curve is traversed by the first and second curve in the collection above.
+<br>The curves being traced are simply copied over from above.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
