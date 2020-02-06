@@ -330,19 +330,13 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>ballB:= proc(x,y) plots[pointplot]([[x,y]],color=blue,symbol=solidcircle,symbolsize=40) end proc:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>ballB:= proc(x,y) plots[pointplot]([[x,y]],color=blue,symbol=box,symbolsize=30) end proc:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>ballO:= proc(x,y) plots[pointplot]([[x,y]],color=orange,symbol=solidcircle,symbolsize=40) end proc:</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>ballBO:= proc(x,y,w,z) plots[pointplot]([[w,z],[x,y]],color=[orange,blue],symbol=solidcircle,symbolsize=40) end proc:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>ballO:= proc(x,y) plots[pointplot]([[x,y]],color=orange,symbol=diamond,symbolsize=40) end proc:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
@@ -360,18 +354,24 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_ball := []:
-<br>frames := 60*5:
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_ball_1 := []:
+<br>sig_ball_2 := []:frames := 60*5:
 <br>res := 2*Pi/(59.8):
 <br>for i from 0 to frames do;
-<br>sig_ball := [op(sig_ball),ballBO(eval(C1[1],s=i*res+.01),eval(diff(C1[1],s),s=i*res+.01),eval(C2[1],s=i*res+.01),eval(diff(C2[1],s),s=i*res+.01))]:
+<br>sig_ball_1 := [op(sig_ball_1),ballB(eval(C1[1],s=i*res+.01),eval(diff(C1[1],s),s=i*res+.01))]:sig_ball_2 := [op(sig_ball_2),ballO(eval(C2[1],s=i*res+.01),eval(diff(C2[1],s),s=i*res+.01))]:
 <br>od:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>S1 := [seq(plots[display](Array([C1_ball[i],sig_ball[i],C2_ball[i]])),i=1..frames)]:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig := [seq(plots[display](sig_ball_1[i],sig_ball_2[i]),i=1..frames)]:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>S1 := [seq(plots[display](Array([C1_ball[i],sig[i],C2_ball[i]])),i=1..frames)]:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
