@@ -1,8 +1,22 @@
 body {
-  font-family: "Arial",sans-serif;
+  font-family: "Helvetica";
 }
 
-<!-- Table stuff -->
+.block {
+	float: left;
+	margin: 10px 0px 10px 0px;
+}
+
+.footspace {
+	float:left;
+	width:100%;
+	height:80px;
+}
+
+p {
+	overflow: hidden;
+}
+/* Table stuff */
 
 table, th, td {
   border: 1px solid black;
@@ -23,7 +37,7 @@ th {
   color: white;
 }
 
-<!-- Navigation Bar -->
+/* Navigation Bar */
 
 .nav {background:#eee;}
 .nav ul {
@@ -31,7 +45,7 @@ th {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color:#333333;
+  background-color:#990000;
 }
 .nav li {
   float: left;
@@ -44,16 +58,39 @@ th {
   text-decoration: none;
 }
 .nav li a:hover {
-  background-color:#111111
+  background-color:#5e0000
 }
 
-<!-- Footer -->
+/* Footer */
 
-footer {
-  display: block;
-  text-align: center;
-  bottom:0;
-  width: 100%;
-  height: 30px;
+.footer {
   position: fixed;
+  background-color: #ffffff;
+  left:5px;
+  right:5px;
+  bottom:0;
+  height:80px;
+  text-align: left;
+}
+
+hr.foot_rule {
+	border: 1px solid #990000; 
+}
+
+/* Links */
+
+a:link {
+	color:#990000 ;
+}
+
+a:visited {
+	color:#5e0000 ;
+}
+
+a:hover {
+	color:#5e0000 ;
+}
+
+a:active {
+	color:#5e0000 ;
 }
