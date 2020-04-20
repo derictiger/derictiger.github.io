@@ -1,0 +1,30 @@
+\documentclass[12pt]{letter}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\begin{document}
+
+\begin{center}
+  Eric Geiger \\
+  Research Statement
+\end{center}
+
+\quad My research interests are in applied differential geometry and in particular the role of differential invariants in object recognition and symmetry detection.
+
+\quad Differential invariants, first studied by Sophus Lie, arise from a finite-dimensional transformation group $G$ acting on a space $E$.  Here the differential invariants, $I$, are functions from a submanifold of $E$ to the real numbers that depend only on the points and derivatives at those points on the submanifold.
+For two submanifolds $N_1, N_2$ in $E$ we will say that they are congruent under $G$ if there exists a $g \in G$ such that $g \cdot N_1 = N_2$.
+Every transformation group allows a finite number of fundamental differential invariants which for a submanifold of $E$ are invariant under actions of the transformation group $G$.
+For example, given the Special Euclidean Group of translations and rotations on the plane $\mathbb{R}^2$ where submanifolds are curves that are $C^3$ smooth, the fundamental differential invariants are the curvature $\kappa$, and its derivative with respect to arc length $\kappa_s$.
+Similarly for the equi-affine group of area-preserving affine transformations acting on the same space, the differential invariants are the affine curvature $\mu$ and derivatives with respect to affine arc length.
+
+\quad One way to use utilize differential invariants is by constructing the signature of a submanifold. These signatures are subspaces of $\mathbb{R}^n$ parameterized by the differential invariants $(I_1, I_2, \dots, I_n)$.  There are many reasons to use this approach in comparing submanifolds. This process removes the trouble of specifying appropriate starting points for a parameterization, and does not require the computationally intensive process of reparameterizing a submanifold.  Under any group action of $G$ on the submanifold the signature is thus left unchanged, however one caveat of this method is that it is not always the case that two submanifolds sharing the same signature are related by the action of some $g \in G$. For example, in the case of the Special Euclidean Group on $\mathbb{R}^2$, it has been shown that the signature can fail to differentiate curves that are locally congruent, but have intervals of constant curvature of varying length.
+
+\quad I am primarily concerned with what signatures of curves in $\mathbb{R}^2$ can tell us  and how to complement them with additional information that can expand their use.  In my paper \emph{Non-congruent non-degenerate curves with identical signatures} I detail a method of constructing non-congruent curves under the Special Euclidean Group with the specific property of non-degeneracy.  This illustrates a problem that curves with non-simple signatures face.  In this process the \emph{signature graph} is introduced and I show that with the additional information of a path on the signature graph two non-degenerate curves can be differentiated up to congruence.
+
+\quad Work currently being worked on involves studying the interaction between signatures of the same curve that arise from different transformation groups.  More specifically what can the signatures of curves that are congruent under an action of the equi-affine group, but not the Special Euclidean group tell us about the different signatures and vice-versa.
+Additionally, many of the actual calculations of these curves involves using numerical approximation methods.  There is a need to find formulas for suitable joint invariants for more complicated group transformations which approximate the differential invariants for a suitable subset of points on a submanifold.  There is plenty of room for experimenting in this area which would be perfect for work with undergraduate students.  Another planned area of study is to look  into how signatures can be used and properly utilized for submanifolds of higher dimensions which has important applications in surface detection and object recognition.
+
+\end{document}
