@@ -1,12 +1,12 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>SignatureCurveWorksheet2.html</title>
-<!-- Created by Maple 2017.1, Mac OS X -->
+<title>SignatureCurveWorksheet4.html</title>
+<!-- Created by Maple 2019.0, Mac OS X -->
 </head>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark14" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark12" />
 <p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>Curves with different order of smoothness</strong></font>&nbsp;</p>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark15" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark13" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Set up Procedure</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">A procedure used several times that returns an approximation of a curve with curvature k using h points.</font>&nbsp;</p>
 <p align="left"><table>
@@ -29,7 +29,7 @@
 </tr>
 </table></strong></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark16" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark14" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Construct Curvature For Original Curve</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">First we will construct the original curve used in Musso and Nicolodi's paper with curvature κ = 1/2 (sin(s)-cos(3s)) - 1/5 and examine the signature.</font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">We will approximate the curve here with 1500 points.</font>&nbsp;</p>
@@ -50,8 +50,11 @@
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C := CurveApprox(k,pts,0,10*Pi):
-<br>plots[display](Array([plot(C[1..-1,1],C[1..-1,2]),plot(k,s=0..2*Pi,labels=[s,kappa])]));
-<br>plot([k,diff(k,s),s=0..2*Pi]);</td>
+<br>plots[display](Array([plot(C[1..-1,1],C[1..-1,2],labels=[x,y],scaling="constrained"),plot(k,s=0..2*Pi,labels=[s,kappa])]));
+<br>
+<br>Alabel1 := plots[textplot]([.4,-.4,kappa(s)]):
+<br>Alabel2 := plots[textplot]([.2,1.5,diff(kappa(s),s)]):
+<br>plots[display](plot([k,diff(k,s),s=0..2*Pi]),Alabel1,Alabel2);</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -61,96 +64,71 @@
 	<colgroup span="1" width="343" >
 	<colgroup span="1" width="343" >
 	<tr>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_35.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_33.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
 		</td>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_36.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_34.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
 		</td>
 	</tr>
 </table></p>
 </td>
 </tr></font>&nbsp;</p>
 <p align="center"><tr>
-<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_37.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_35.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
 <td width='5%' align='center'></td>
 </tr>
 </table></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark17" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark15" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Find Points of Signature Intersection</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">We will numerically approximate pre-images of self-intersection points of the signature under the signature map using the curvature function as a guide for the starting points for fsolve.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>kt := eval(k,s=t):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>kt := eval(k,s=t):
+<br>kpt := eval(kp,s=t):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>kpt := eval(kp,s=t):</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s16 := fsolve({k=kt,kp=kpt},{s=0.2,t=4.9}):</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s25 := fsolve({k=kt,kp=kpt},{s=1.7,t=3.3}):</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s38 := fsolve({k=kt,kp=kpt},{s=2.0,t=5.6}):</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s47 := fsolve({k=kt,kp=kpt},{s=2.5,t=4.8}):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s16 := fsolve({k=kt,kp=kpt},{s=0.2,t=4.9}):
+<br>s25 := fsolve({k=kt,kp=kpt},{s=1.7,t=3.3}):
+<br>s38 := fsolve({k=kt,kp=kpt},{s=2.0,t=5.6}):
+<br>s47 := fsolve({k=kt,kp=kpt},{s=2.5,t=4.8}):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman"><strong></strong></font><font color="#000000" size="3" face="Times New Roman">The eight points that correspond to self-intersections of the signature map are ordered here.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s1, s2, s3, s4 := rhs(s16[1]), rhs(s25[1]), rhs(s38[1]), rhs(s47[1]):</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s5, s6, s7, s8 := rhs(s25[2]), rhs(s16[2]), rhs(s47[2]), rhs(s38[2]):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>s1, s2, s3, s4 := rhs(s16[1]), rhs(s25[1]), rhs(s38[1]), rhs(s47[1]):
+<br>s5, s6, s7, s8 := rhs(s25[2]), rhs(s16[2]), rhs(s47[2]), rhs(s38[2]):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark18" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark16" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Construct New Curvature</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Now we can illustrate which parts of the curvature and curve correspond to subsets of the signature curve via color.</font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Our intervals associated with each edge and color can be read directly below.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig1 := plot([k,kp,s=s1..s2],color="Red",thickness=3):
-<br>sig2 := plot([k,kp,s=s2..s3],color="Orange",thickness=3):
-<br>sig3 := plot([k,kp,s=s3..s4],color="Yellow",thickness=3):
-<br>sig4 := plot([k,kp,s=s4..s5],color="Lime",thickness=3):
-<br>sig5 := plot([k,kp,s=s5..s6],color="Green",thickness=3):
-<br>sig6 := plot([k,kp,s=s6..s7],color="Cyan",thickness=3):
-<br>sig7 := plot([k,kp,s=s7..s8],color="Blue",thickness=3):
-<br>sig8 := plot([k,kp,s=s8..2*Pi+s1],color="Purple",thickness=3):
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig1 := plot([k,kp,s=s1..s2],color="Red"):
+<br>sig2 := plot([k,kp,s=s2..s3],color="Orange"):
+<br>sig3 := plot([k,kp,s=s3..s4],color="Yellow"):
+<br>sig4 := plot([k,kp,s=s4..s5],color="Lime"):
+<br>sig5 := plot([k,kp,s=s5..s6],color="Green"):
+<br>sig6 := plot([k,kp,s=s6..s7],color="Cyan"):
+<br>sig7 := plot([k,kp,s=s7..s8],color="Blue"):
+<br>sig8 := plot([k,kp,s=s8..2*Pi+s1],color="Purple"):
 <br>
-<br>
-<br>plots[display](sig1,sig2,sig3,sig4,sig5,sig6,sig7,sig8);</td>
+<br>sig_curve := sig1,sig2,sig3,sig4,sig5,sig6,sig7,sig8,Alabel1,Alabel2:
+<br>plots[display](sig_curve);</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
 <tr>
-<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_38.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/SignatureCurveWorksheet_36.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
 <td width='5%' align='center'></td>
 </tr>
 </table></font>&nbsp;</p>
@@ -161,7 +139,6 @@
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>eCol := table([a="Green",b="Purple",c="Cyan",d="Yellow",e="Blue",f="Orange",g="Lime",h="Red"]):
 <br>
 <br>eInt := table([a=[s5,s6],b=[s8,s1+2*Pi],c=[s6,s7],d=[s3,s4],e=[s7,s8],f=[s2,s3],g=[s4,s5],h=[s1,s2]]):
-<br>
 <br>
 <br>ePts := table([a=round((s6-s5)*pts/(10*Pi)),b=round((s1+2*Pi-s8)*pts/(10*Pi)),c=round((s7-s6)*pts/(10*Pi)),d=round((s4-s3)*pts/(10*Pi)),e=round((s8-s7)*pts/(10*Pi)),f=round((s3-s2)*pts/(10*Pi)),g=round((s5-s4)*pts/(10*Pi)),h=round((s2-s1)*pts/(10*Pi))]):</td>
 </tr>
@@ -199,14 +176,38 @@
 </tr>
 </table></strong></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark19" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark17" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>New Curves</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Through an analysis of the signature graph, we see there are only five admissible paths given below.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C1 := New_Curve([b,h,f,d,g,a,c,e],5,k):
-<br>plots[display](Array([plots[display](C1[3]),plots[display](C1[4])]));</td>
+<br>plots[display](Array([plots[display](C1[3],labels=[s,kappa]),plots[display](C1[4],labels=[x,y],scaling="constrained")]));</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
+<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
+	<colgroup span="1" width="343" >
+	<colgroup span="1" width="343" >
+	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_37.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_38.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
+		</td>
+	</tr>
+</table></p>
+</td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C2 := New_Curve([b,h,a,c,e,d,g,f],5,k):
+<br>plots[display](Array([plots[display](C2[3],labels=[s,kappa]),plots[display](C2[4],labels=[x,y],scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -229,8 +230,8 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C2 := New_Curve([b,h,a,c,e,d,g,f],5,k):
-<br>plots[display](Array([plots[display](C2[3]),plots[display](C2[4])]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C3 := New_Curve([b,h,a,c,g,f,d,e],5,k):
+<br>plots[display](Array([plots[display](C3[3],labels=[s,kappa]),plots[display](C3[4],labels=[x,y],scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -253,8 +254,8 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C3 := New_Curve([b,h,a,c,g,f,d,e],5,k):
-<br>plots[display](Array([plots[display](C3[3]),plots[display](C3[4])]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C4 := New_Curve([b,c,e,d,g,a,h,f],5,k):
+<br>plots[display](Array([plots[display](C4[3],labels=[s,kappa]),plots[display](C4[4],labels=[x,y],scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -277,8 +278,8 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C4 := New_Curve([b,c,e,d,g,a,h,f],5,k):
-<br>plots[display](Array([plots[display](C4[3]),plots[display](C4[4])]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C5 := New_Curve([b,c,g,a,h,f,d,e],5,k):
+<br>plots[display](Array([plots[display](C5[3],labels=[s,kappa]),plots[display](C5[4],labels=[x,y],scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -298,32 +299,8 @@
 <td width='5%' align='center'></td>
 </tr>
 </table></font>&nbsp;</p>
-<p align="left"><table>
-<tr>
-<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C5 := New_Curve([b,c,g,a,h,f,d,e],5,k):
-<br>plots[display](Array([plots[display](C5[3]),plots[display](C5[4])]));</td>
-</tr>
-</table></strong></font>&nbsp;</p>
-<p align="center"><table width='100%'>
-<tr>
-<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman">
-<p><table style="empty-cells:show;border-collapse:collapse;border:none;border-color:black;border-width:1;" width=688>
-	<colgroup span="1" width="343" >
-	<colgroup span="1" width="343" >
-	<tr>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_47.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
-		</td>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_48.gif" width="342" height="342" alt="Plot_2d" align="center" border="0">
-		</td>
-	</tr>
-</table></p>
-</td>
-<td width='5%' align='center'></td>
-</tr>
-</table></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark20" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark18" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>An animation</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Below an animation is created showing how the signature curve is traversed by the first and second curve in the collection above.
 <br>The curves being traced are simply copied over from above.</font>&nbsp;</p>
@@ -346,8 +323,8 @@
 <br>frames := 60*5:
 <br>res := 1500/frames:
 <br>for i from 1 to frames do;
-<br>C1_ball := [op(C1_ball),ballB(C1[2][ceil(i*res),1],C1[2][ceil(i*res),2])]:
-<br>C2_ball := [op(C2_ball),ballO(C2[2][ceil(i*res),1],C2[2][ceil(i*res),2])]:
+<br> &nbsp;C1_ball := [op(C1_ball),ballB(C1[2][ceil(i*res),1],C1[2][ceil(i*res),2])]:
+<br> &nbsp;C2_ball := [op(C2_ball),ballO(C2[2][ceil(i*res),1],C2[2][ceil(i*res),2])]:
 <br>od:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
@@ -355,23 +332,32 @@
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_ball_1 := []:
-<br>sig_ball_2 := []:frames := 60*5:
+<br>sig_ball_2 := []:
+<br>frames := 60*5:
 <br>res := 2*Pi/(59.8):
 <br>for i from 0 to frames do;
-<br>sig_ball_1 := [op(sig_ball_1),ballB(eval(C1[1],s=i*res+.01),eval(diff(C1[1],s),s=i*res+.01))]:sig_ball_2 := [op(sig_ball_2),ballO(eval(C2[1],s=i*res+.01),eval(diff(C2[1],s),s=i*res+.01))]:
+<br> &nbsp;sig_ball_1 := [op(sig_ball_1),ballB(eval(C1[1],s=i*res+.01),eval(diff(C1[1],s),s=i*res+.01))]:
+<br> &nbsp;sig_ball_2 := [op(sig_ball_2),ballO(eval(C2[1],s=i*res+.01),eval(diff(C2[1],s),s=i*res+.01))]:
 <br>od:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig := [seq(plots[display](sig_ball_1[i],sig_ball_2[i]),i=1..frames)]:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>C1_animation := [seq(plots[display](C1_ball[i],C1[4],scaling="constrained"),i=1..frames)]:
+<br>C2_animation := [seq(plots[display](C2_ball[i],C2[4],scaling="constrained"),i=1..frames)]:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>S1 := [seq(plots[display](Array([C1_ball[i],sig[i],C2_ball[i]])),i=1..frames)]:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_animation := [seq(plots[display](sig_ball_1[i],sig_ball_2[i],sig_curve),i=1..frames)]:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>S1 := [seq(plots[display](Array([C1_animation[i],sig_animation[i],C2_animation[i]])),i=1..frames)]:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
@@ -388,11 +374,11 @@
 	<colgroup span="1" width="228" >
 	<colgroup span="1" width="228" >
 	<tr>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_47.gif" width="227" height="227" alt="Plot_2d" align="center" border="0">
+		</td>
+		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_48.gif" width="227" height="227" alt="Plot_2d" align="center" border="0">
+		</td>
 		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_49.gif" width="227" height="227" alt="Plot_2d" align="center" border="0">
-		</td>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_50.gif" width="227" height="227" alt="Plot_2d" align="center" border="0">
-		</td>
-		<td style="border-right:solid;border-left:solid;border-top:solid;border-bottom:solid;border-color:black;border-width:1;" valign=top colspan=1 rowspan=1><img src="images/SignatureCurveWorksheet_51.gif" width="227" height="227" alt="Plot_2d" align="center" border="0">
 		</td>
 	</tr>
 </table></p>

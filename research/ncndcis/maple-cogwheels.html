@@ -2,18 +2,18 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>SignatureCurveWorksheet2.html</title>
-<!-- Created by Maple 2017.1, Mac OS X -->
+<!-- Created by Maple 2019.0, Mac OS X -->
 </head>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark3" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark2" />
 <p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>Non-degenerate cogwheels</strong></font>&nbsp;</p>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark4" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark3" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Set up</strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">A procedure that takes a parameterization and returns the curvature and derivative with respect to arclength.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A proceedure that takes a parameterization and returns the curvature and derivative with respect to arclength.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>curvature := proc(x,y,t)
-<br>description "input x and y parameterized by t to return curvature parameterized by t";
+<br>description "input x and y parameterized by t to return curvature and derivative with respect to arclength parameterized by t";
 <br>local k, kp;
 <br>k := (diff(x,t)*diff(y,t,t)-diff(y,t)*diff(x,t,t))/((diff(x,t)^2+diff(y,t)^2)^(3/2));
 <br>kp := diff(k,t)/((diff(x,t)^2+diff(y,t)^2)^(1/2));
@@ -21,7 +21,7 @@
 <br>end proc:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">A procedure that takes </font><font color="#000000" size="3" face="Times New Roman"><em>n, </em></font><font color="#000000" size="3" face="Times New Roman">the number of sections on the cogwheel, </font><font color="#000000" size="3" face="Times New Roman"><em>a,</em></font><font color="#000000" size="3" face="Times New Roman"> a list of length </font><font color="#000000" size="3" face="Times New Roman"><em>n</em></font><font color="#000000" size="3" face="Times New Roman"> that tells how many teeth each section has, and </font><font color="#000000" size="3" face="Times New Roman"><em>r_0, </em></font><font color="#000000" size="3" face="Times New Roman">the inner radius of the cogwheel. &nbsp;The output is the parameterization of such a cogwheel.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A proceedure that takes </font><font color="#000000" size="3" face="Times New Roman"><em>n, </em></font><font color="#000000" size="3" face="Times New Roman">the number of sections on the cogwheel, </font><font color="#000000" size="3" face="Times New Roman"><em>a,</em></font><font color="#000000" size="3" face="Times New Roman"> a list with </font><font color="#000000" size="3" face="Times New Roman"><em>n </em></font><font color="#000000" size="3" face="Times New Roman">elements that tells how many teeth each section has, and </font><font color="#000000" size="3" face="Times New Roman"><em>r_0, </em></font><font color="#000000" size="3" face="Times New Roman">the inner radius of the cogwheel. &nbsp;The output is the parameterization of such a cogwheel.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
@@ -42,13 +42,14 @@
 </tr>
 </table></strong></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark5" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark4" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Example of Non-Degenerate Cogwheel</strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">A non-degenerate cogwheel with 3 sections having 2, 3, and 4 teeth respectively with an inner radius of 1.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A non-degenerate cogwheel with 3 sections having 2, 3, and 4 teeth on each section, with an inner radius of 1.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog_ex := cogwheel(3,[2,3,4],1):plot([[cog_ex[1],cog_ex[2],t=0..2*Pi/3],[cog_ex[1],cog_ex[2],t=2*Pi/3..4*Pi/3],[cog_ex[1],cog_ex[2],t=4*Pi/3..2*Pi]],color=["red","blue","green"]);</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog_ex := cogwheel(3,[2,3,4],1):
+<br>plot([[cog_ex[1],cog_ex[2],t=0..2*Pi/3],[cog_ex[1],cog_ex[2],t=2*Pi/3..4*Pi/3],[cog_ex[1],cog_ex[2],t=4*Pi/3..2*Pi]],color=["red","blue","green"],scaling="constrained");</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -58,19 +59,22 @@
 </tr>
 </table></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark6" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark5" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Non-Degenerate Cogwheels with identical Signature</strong></font>&nbsp;</p>
 <p align="left"><font color="#000000" size="3" face="Times New Roman">Two non-degenerate cogwheels with identical siganture. &nbsp;Created by permuting sections of teeth.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1 := cogwheel(4,[3,4,5,6],1):cog2 := cogwheel(4,[3,5,6,4],1):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1 := cogwheel(4,[3,4,5,6],1):
+<br>cog2 := cogwheel(4,[3,5,4,6],1):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1_plot := plot([[cog1[1],cog1[2],t=0..Pi/2],[cog1[1],cog1[2],t=Pi/2..Pi],[cog1[1],cog1[2],t=Pi..3*Pi/2],[cog1[1],cog1[2],t=3*Pi/2..2*Pi]],color=["red","blue","green","purple"],labels=[x,y]):cog2_plot := plot([[cog2[1],cog2[2],t=0..Pi/2],[cog2[1],cog2[2],t=Pi/2..Pi],[cog2[1],cog2[2],t=Pi..3*Pi/2],[cog2[1],cog2[2],t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],labels=[x,y]):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog1_plot := plot([[cog1[1],cog1[2],t=0..Pi/2],[cog1[1],cog1[2],t=Pi/2..Pi],[cog1[1],cog1[2],t=Pi..3*Pi/2],[cog1[1],cog1[2],t=3*Pi/2..2*Pi]],color=["red","blue","green","purple"],labels=[x,y],scaling="constrained"):
+<br>
+<br>cog2_plot := plot([[cog2[1],cog2[2],t=0..Pi/2],[cog2[1],cog2[2],t=Pi/2..Pi],[cog2[1],cog2[2],t=Pi..3*Pi/2],[cog2[1],cog2[2],t=3*Pi/2..2*Pi]],color=["red","green","blue","purple"],labels=[x,y],scaling="constrained"):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
@@ -100,15 +104,18 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k1, kp1 := curvature(cog1[1],cog1[2],t):k2, kp2 := curvature(cog2[1],cog2[2],t):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k1, kp1 := curvature(cog1[1],cog1[2],t):
+<br>k2, kp2 := curvature(cog2[1],cog2[2],t):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
 <td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k1_plot := plot([[t,k1,t=0..Pi/2],[t,k1,t=Pi/2..Pi],
-<br>[t,k1,t=Pi..3*Pi/2],[t,k1,t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],numpoints=1000,labels=["t",kappa]):k2_plot := plot([[t,k2,t=0..Pi/2],[t,k2,t=Pi/2..Pi],
-<br>[t,k2,t=Pi..3*Pi/2],[t,k2,t=3*Pi/2..2*Pi]],color=["red","green","purple","blue"],numpoints=1000,labels=["t",kappa]):</td>
+<br>[t,k1,t=Pi..3*Pi/2],[t,k1,t=3*Pi/2..2*Pi]],color=["red","blue","green","purple"],numpoints=1000,labels=["t",kappa]):
+<br>
+<br>k2_plot := plot([[t,k2,t=0..Pi/2],[t,k2,t=Pi/2..Pi],
+<br>[t,k2,t=Pi..3*Pi/2],[t,k2,t=3*Pi/2..2*Pi]],color=["red","green","blue","purple"],numpoints=1000,labels=["t",kappa]):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
@@ -145,7 +152,8 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_xlabel := plots[textplot]([7.5,-25,'typeset'(kappa)]):sig_ylabel := plots[textplot]([3,250,'typeset'(diff(kappa(s),s))]):plots[display]({sig,sig_xlabel,sig_ylabel});</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>sig_label := plots[textplot]({[7.5,-25,'typeset'(kappa)],[3,250,'typeset'(diff(kappa(s),s))]}):
+<br>plots[display]({sig,sig_label});</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -154,7 +162,7 @@
 <td width='5%' align='center'></td>
 </tr>
 </table></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">The below procedures generate cogwheels that swap the ordering of teeth on the cogwheels above and plots them using the same color matching.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The below proceedures generate cogwheels that swap the ordering of teeth on the cogwheels above and plots them using the same color matching.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
@@ -182,7 +190,7 @@
 <br>theta := 0;
 <br>cog_plot := [];
 <br>for i from 1 to nops(L) do
-<br> &nbsp;cog_plot := [op(cog_plot),plot([rho_x,rho_y,t=theta..theta+2*Pi/(n*L[i])],color=cog_color[L[i]-2])];
+<br> &nbsp;cog_plot := [op(cog_plot),plot([rho_x,rho_y,t=theta..theta+2*Pi/(n*L[i])],labels=[x,y],color=cog_color[L[i]-2])];
 <br> &nbsp;theta := theta + 2*Pi/(n*L[i]);
 <br>end do;
 <br>return cog_plot;
@@ -193,25 +201,28 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_teeth := [3,4,4,4,4,3,5,5,5,5,5,3,6,6,6,6,6,6]:cog4_teeth := [4,5,6,4,6,4,3,5,3,5,6,3,6,5,6,4,5,6]:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_teeth := [3,4,4,4,4,3,5,5,5,5,5,3,6,6,6,6,6,6]:
+<br>cog4_teeth := [4,5,6,4,6,4,3,5,3,5,6,3,6,5,6,4,5,6]:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3 := cog_swap(cog3_teeth,4):cog4 := cog_swap(cog4_teeth,4):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3 := cog_swap(cog3_teeth,4):
+<br>cog4 := cog_swap(cog4_teeth,4):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_plot := cog_swap_plot(cog3_teeth,cog3[1],cog3[2],4):cog4_plot := cog_swap_plot(cog4_teeth,cog4[1],cog4[2],4):</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog3_plot := cog_swap_plot(cog3_teeth,cog3[1],cog3[2],4):
+<br>cog4_plot := cog_swap_plot(cog4_teeth,cog4[1],cog4[2],4):</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog3_plot),plots[display](cog4_plot)]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog3_plot,scaling="constrained"),plots[display](cog4_plot,scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -232,14 +243,16 @@
 </tr>
 </table></font>&nbsp;</p>
 </dl>
-<dl style="margin-left:40px"><a name="MapleAutoBookmark7" />
+<dl style="margin-left:40px"><a name="MapleAutoBookmark6" />
 <p align="left"><font color="#000000" size="4" face="Times New Roman"><strong>Cogwheels generated from non-admissible words</strong></font>&nbsp;</p>
-<p align="left"><font color="#000000" size="3" face="Times New Roman">Below are cogwheels generated from non-admissible words. &nbsp;The left coghweel losses two teeth from its 6-section to gain one in its 3-section while the right cogwheel looses two teeth in its 4-section to gain three in its 6-section. &nbsp;While they will have the same signature as above, the signature index will be different, though the right cogwheel has the same signature index as those above.</font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Below are cogwheels generated from non-admissible words. &nbsp;
+<br>The left coghweel losses two teeth from its 6-section to gain one in its 3-section while the right cogwheel looses two teeth in its 4-section to gain three in its 6-section. &nbsp;
+<br>While they will have the same signature as above, the signature index will be different, though the right cogwheel has the same signature index as those above.</font>&nbsp;</p>
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog5_teeth := [3,3,3,3,4,4,4,4,5,5,5,5,5,6,6,6,6]:
-<br>cog6_teeth := [3,3,3,4,4,5,5,5,5,5,6,6,6,6,6,6,6,6,6]:</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>cog5_teeth := [3,3,4,4,4,4,5,5,5,5,5,6,6,6,6,6,6,6,6]:
+<br>cog6_teeth := [3,3,3,4,4,4,4,4,4,5,5,5,5,5,6,6,6]:</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="left"><table>
@@ -259,7 +272,7 @@
 <p align="left"><table>
 <tr>
 <td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
-<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog5_plot),plots[display](cog6_plot)]));</td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plots[display](Array([plots[display](cog5_plot,scaling="constrained"),plots[display](cog6_plot,scaling="constrained")]));</td>
 </tr>
 </table></strong></font>&nbsp;</p>
 <p align="center"><table width='100%'>
@@ -279,7 +292,10 @@
 <td width='5%' align='center'></td>
 </tr>
 </table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"></font>&nbsp;</p>
 </dl>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"></font>&nbsp;</p>
 </dl>
 
 </html>
