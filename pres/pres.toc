@@ -1,0 +1,2 @@
+\beamer@sectionintoc {1}{A Metric On Signatures}{10}{0}{1}
+\beamer@sectionintoc {2}{From Signatures to Curves}{12}{0}{2}
