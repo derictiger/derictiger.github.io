@@ -35,7 +35,7 @@ p {
 /* Table stuff */
 
 table, th, td {
-  margin-left:20px;
+  margin-left:0px;
   border-collapse: collapse;
 }
 th, td {
