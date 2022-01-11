@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>maple-affine-reconstruction1.html</title>
+<!-- Created by Maple 2021.2, Mac OS X -->
+</head>
+<a name="MapleAutoBookmark1" />
+
+<body bgcolor="FFFFFF">
+<p align="left"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-affine-reconstruction_1.gif" width="17" height="18" alt="" align="center" border="0"></font>&nbsp;</p>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark2" />
+<p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>Reconstruction from affine curvature using Picard iterations</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The definite integrals in the Picard iteration are approximated with the trapezoid method.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>with(LinearAlgebra):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>trapezoid_approx := proc(L,s)
+<br> &nbsp;local M,i;
+<br>
+<br> &nbsp;# Input an array of function values L and a mesh s 
+<br> &nbsp;# Output a new array of function values approximating the integral using the trapezoid method
+<br>
+<br> &nbsp;M := Array(1..ArrayNumElems(L),fill=Matrix(Dimension(L[1]))):
+<br>
+<br> &nbsp;for i from 2 to ArrayNumElems(L) do
+<br> &nbsp;&nbsp;&nbsp;M[i] := .5*(L[i]+L[i-1])*(s[i]-s[i-1])+M[i-1]:
+<br> &nbsp;end do:
+<br>
+<br> &nbsp;return M:
+<br>
+<br>end proc:
+<br></td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">The following procedure approximates i Picard iterations using h mesh points from a given matrix function, in the below examples we use the affine Cartan matrix as our matrix function.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>PicardIt := proc(K,n,s_0,s_L,mesh_pts)
+<br> &nbsp;local A, U, k, s, i, g, gx, gy, h;
+<br># Input, matrix function K, number of PIs, starting point, ending point, number of mesh points
+<br> &nbsp;s := Array(1..mesh_pts,fill=s_0): #[s_0]:
+<br> &nbsp;k := Array(1..mesh_pts): #[evalf(K(s_0))]:
+<br> &nbsp;k[1] := evalf(K(s[1])):
+<br>
+<br> &nbsp;h := (s_L - s_0)/(mesh_pts-1):
+<br>
+<br>
+<br> &nbsp;for i from 2 to mesh_pts do
+<br> &nbsp;&nbsp;&nbsp;s[i] := s[i-1] + h:
+<br> &nbsp;&nbsp;&nbsp;k[i] := evalf(K(s[i])):
+<br> &nbsp;end do:
+<br>
+<br> &nbsp;U := Array(1..mesh_pts,fill=Matrix([[1,0],[0,1]])):
+<br> &nbsp;A := U:
+<br> &nbsp;for i from 1 to n do
+<br> &nbsp;&nbsp;&nbsp;A := U + trapezoid_approx(Array(k.A),s):
+<br> &nbsp;end do:
+<br> &nbsp;
+<br> &nbsp;g := trapezoid_approx(A,s):
+<br> &nbsp;gx := [seq(g[i][1,1],i=1..mesh_pts)]:
+<br> &nbsp;gy := [seq(g[i][1,2],i=1..mesh_pts)]:
+<br>
+<br> &nbsp;return gx,gy:
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A set up of the smooth bump functions that are used in constructing the examples seen in Section 4</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>h := (r_1,r_2) -&gt; exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2))):
+<br>g := (r_1,r_2) -&gt; -exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2)))+1:
+<br>f := (r_1,r_2) -&gt; piecewise(t&lt;=r_1,0,
+<br> &nbsp;t&lt;(r_1+r_2)/2, g(r_1,(r_1+r_2)/2), t=(r_1+r_2)/2, 1,
+<br> &nbsp;t&lt;r_2, h((r_1+r_2)/2,r_2),0):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Two examples of reconstructions of curves with affine arclength parameterized affine curvatures μ<img src="images/maple-affine-reconstruction_2.gif" width="18" height="23" alt="__n; "_noterminate" align="center" border="0">(α) = </font><font color="#000000" size="3" face="Times New Roman"><em>n<img src="images/maple-affine-reconstruction_3.gif" width="130" height="25" alt="" align="center" border="0"></em></font><font color="#000000" size="3" face="Times New Roman">periodically extended from Section 4 with varrying values for </font><font color="#000000" size="3" face="Times New Roman"><em>n</em></font><font color="#000000" size="3" face="Times New Roman">.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>n := 2/5:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>mu1 := s -&gt; eval(n*Pi*(f(0,2)+1),t=s-2*floor(s/2))^2:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>K1 := s -&gt; Matrix([[0,1],[-mu1(s),0]]):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>gx1, gy1 := PicardIt(K1,200,0,22,1500):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(gx1,gy1,labels=[x,y]);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-affine-reconstruction_4.gif" width="400" height="400" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>n := 2/3:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>mu2 := s -&gt; eval(n*Pi*(f(0,2)+1),t=s-2*floor(s/2))^2:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>K2 := s -&gt; Matrix([[0,1],[-mu2(s),0]]):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>gx2, gy2 := PicardIt(K2,200,0,10,1500):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(gx2,gy2,labels=[x,y]);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-affine-reconstruction_5.gif" width="500" height="500" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"></td>
+</tr>
+</table>&nbsp;</p>
+</dl>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-affine-reconstruction_6.gif" width="17" height="18" alt="" align="center" border="0"></font>&nbsp;</p>
+</body>
+</html>

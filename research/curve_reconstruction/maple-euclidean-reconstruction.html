@@ -1,0 +1,159 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>maple-euclidean-reconstruction1.html</title>
+<!-- Created by Maple 2021.2, Mac OS X -->
+</head>
+<a name="MapleAutoBookmark1" />
+
+<body bgcolor="FFFFFF">
+<p align="left"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_1.gif" width="17" height="18" alt="" align="center" border="0"></font>&nbsp;</p>
+<dl style="margin-left:40px"><a name="MapleAutoBookmark2" />
+<p align="left"><font color="#000000" size="5" face="Times New Roman"><strong>Euclidean Reconstruction</strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A procedure that returns an approximation of a curve with Euclidean arclength parameterized Euclidean curvature k using h points.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>CurveApprox := proc(k,h,a,b)
+<br>description "input curvature of a curve - k; number of partitions in the approximation - h; and starting / ending points - a, b;
+<br>outputs (h+1)x2 array giving x and y components of original curve";
+<br>local i, d, Kt, C;
+<br>d := (b-a)/h;
+<br>Kt := Array(1..h+1); C := Array(1..h+1,1..2);
+<br>Kt[1] := 0; C[1,1] := 0; C[1,2] := 0;
+<br>for i from 2 to h+1 do;
+<br>Kt[i] := Kt[i-1] + d/2 * (evalf(eval(k,s=d*(i-2)+a)) + evalf(eval(k,s=d*(i-1)+a)));
+<br>C[i,1] := C[i-1,1] + d/2 * (evalf(cos(Kt[i-1])) + evalf(cos(Kt[i])));
+<br>C[i,2] := C[i-1,2] + d/2 * (evalf(sin(Kt[i-1])) + evalf(sin(Kt[i])));
+<br>end do;
+<br>return C;
+<br>end proc:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">A simple example of the procedure above to plot a curve with arclength parameterized Euclidean curvature sin(s)</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k := sin(s):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>c := CurveApprox(k,500,0,12*Pi):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(c[1..-1,1],c[1..-1,2],labels=['x','y']);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_2.gif" width="500" height="500" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">An example of a Euclidean curvature of a closed curve</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k := sin(s)-1/5:</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>int(k,s=0..2*Pi)/(2*Pi);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#0000ff" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_3.gif" width="42" height="39" alt="-`/`(1, 5)" align="center" border="0"></td>
+<td width='5%' align='center'>(1.1)</td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>c := CurveApprox(k,500,0,10*Pi):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(c[1..-1,1],c[1..-1,2],labels=['x','y']);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_4.gif" width="500" height="500" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman">Some examples of curves reconstructed at the end of Section 3 that have smooth bump functions incorporated in their Euclidean curvature.</font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>h := (r_1,r_2) -&gt; exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2))):
+<br>g := (r_1,r_2) -&gt; -exp(-1/(r_1-t))/(exp(-1/(r_1-t))+exp(-1/(t-r_2)))+1:
+<br>
+<br>f := (r_1,r_2) -&gt; piecewise(t&lt;=r_1,0,
+<br> &nbsp;t&lt;((r_2+r_1)/2), g(r_1,(r_2+r_1)/2), t=((r_2+r_1)/2), 1,
+<br> &nbsp;t&lt;r_2, h((r_2+r_1)/2,r_2), t = r_2, 0, 0):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>k_n := n -&gt; eval(sin(t) + 2*Pi/n*f(0,2),t=s-2*Pi*floor(s/(2*Pi))):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>c_n := n -&gt; CurveApprox(k_n(n),500,0,2*Pi*denom(1/n)):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>c1 := c_n(10):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(c1[1..-1,1],c1[1..-1,2],labels=['x','y']);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_5.gif" width="500" height="500" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>c2 := c_n(5/3):</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="left"><table>
+<tr>
+<td valign="top" align="center"><font color="#78000e" size="3" face="Courier New"><strong>&gt; </strong></font></td>
+<td valign="top"><font color="#78000e" size="3" face="Courier New"><strong>plot(c2[1..-1,1],c2[1..-1,2],labels=['x','y']);</td>
+</tr>
+</table></strong></font>&nbsp;</p>
+<p align="center"><table width='100%'>
+<tr>
+<td valign="top" align="center"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_6.gif" width="500" height="500" alt="Plot_2d" align="center" border="0"></td>
+<td width='5%' align='center'></td>
+</tr>
+</table></font>&nbsp;</p>
+</dl>
+<p align="left"><font color="#000000" size="3" face="Times New Roman"><img src="images/maple-euclidean-reconstruction_7.gif" width="17" height="18" alt="" align="center" border="0"></font>&nbsp;</p>
+</body>
+</html>
